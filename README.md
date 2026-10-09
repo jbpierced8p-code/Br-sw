@@ -1,33 +1,43 @@
-# React + TypeScript + Vite
+# Browse & Sweep
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A full-featured Google Drive manager that lets you browse every file in your Drive like a local file explorer, then clean up duplicates, large files, and clutter — all in one place.
 
-Currently, two official plugins are available:
+## Features (MVP)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Google OAuth login** — sign in with your Google account
+- **File browser** — browse Drive files in a tree/explorer view
+- **Duplicate scanner** — find duplicate files by name, size, and content hash
+- **Large file finder** — surface files over a configurable size threshold
+- **Cleanup actions** — trash/delete selected files (paid feature)
+- **Freemium model** — scanning and browsing are free; executing cleanup actions requires a paid pass
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + Vite + TypeScript
+- React Router (routing)
+- Tailwind CSS v4 (styling, via `@tailwindcss/vite`)
+- Google Drive API v3 + Google OAuth 2.0 (integration coming next)
 
-## Expanding the Oxlint configuration
+## Project Structure
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/
+  api/         # API layer (Google Drive integration)
+  components/  # UI components
+  hooks/       # custom hooks
+  pages/       # page components (Login, Dashboard)
+server/        # backend/server code
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Development
 
+```bash
+npm install
+npm run dev      # start dev server
+npm run build    # typecheck + production build
+npm run lint     # oxlint
+```
+
+## Status
+
+This is the initial scaffold: routing, Tailwind, and placeholder Login + Dashboard pages are in place. Google Drive integration and the cleanup engine are next.
